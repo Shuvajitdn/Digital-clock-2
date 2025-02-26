@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        /* General Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Page Styling */
+        body {
+            background-color: #131419;
+            font-family: Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Digital Clock */
+        .date {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30vmin;
+            font-weight: 300;
+            color: #fff;
+            padding: 20px 30px;
+            box-shadow: 
+                -5px -5px 5px rgba(255, 255, 255, 0.04),
+                7px 7px 7px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        /* Seconds Styling */
+        .date .sec {
+            font-size: 0.5em;
+            opacity: 0.8;
+        }
+
+        /* Colon Styling */
+        .date .min::before,
+        .date .sec::before {
+            content: ":";
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="date">
+        <span class="hour"></span>
+        <span class="min"></span>
+        <span class="sec"></span>
+    </div>
+
+    <script>
+        function clock() {
+            let d = new Date(),
+                h = d.getHours(),
+                m = d.getMinutes(),
+                s = d.getSeconds();
+
+            h = h < 10 ? `0${h}` : h;
+            m = m < 10 ? `0${m}` : m;
+            s = s < 10 ? `0${s}` : s;
+
+            document.querySelector(".hour").textContent = h;
+            document.querySelector(".min").textContent = m;
+            document.querySelector(".sec").textContent = s;
+
+            setTimeout(clock, 1000);
+        }
+
+        clock();
+    </script>
+
+</body>
+</html>
